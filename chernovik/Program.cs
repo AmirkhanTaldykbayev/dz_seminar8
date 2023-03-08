@@ -57,14 +57,14 @@ void PrintMatrix(int[,] inputMatrix)
 /// <param name="nonFilteredMatrix">Неотсортированная матрица</param>
 void DecreasingRows(int[,] nonFilteredMatrix) //Decreasing - убывающий (прим. перевод); Пардон за длинное название параметра
 {
-    for (int i = 0; i < nonFilteredMatrix.GetLength(0); i++)
+    for (int i = 0; i < nonFilteredMatrix.GetLength(1); i++)
     {
         for (int j = 0; j < nonFilteredMatrix.GetLength(0); j++)
         {
             if (nonFilteredMatrix[i, j] < nonFilteredMatrix[i, j])
             {
                 nonFilteredMatrix[i, j] = nonFilteredMatrix[i, j];
-                nonFilteredMatrix[i, j] = nonFilteredMatrix[i, j];
+                nonFilteredMatrix[i,j] = nonFilteredMatrix[i,j];
             }
         }
     }

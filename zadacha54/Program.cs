@@ -59,9 +59,9 @@ void DecreasingRows(int[,] nonFilteredMatrix) //Decreasing - убывающий 
 {
     for (int k = 0; k < nonFilteredMatrix.GetLength(0); k++) // Переменная "k" добавлена для перехода на следующую строчку
     {
-        for (int i = 0; i < nonFilteredMatrix.GetLength(0); i++)
+        for (int i = 0; i < nonFilteredMatrix.GetLength(1); i++)
         {
-            for (int j = i + 1; j < nonFilteredMatrix.GetLength(0); j++)
+            for (int j = i + 1; j < nonFilteredMatrix.GetLength(1); j++)
             {
                 if (nonFilteredMatrix[k, i] < nonFilteredMatrix[k, j])
                 {
