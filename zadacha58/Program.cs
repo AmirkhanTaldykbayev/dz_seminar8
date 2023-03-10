@@ -5,3 +5,71 @@
 // Результирующая матрица будет:
 // 18 20
 // 15 18
+
+int[,] firstMatrix = GetMatrix(2,2);
+int[,] secondMatrix = GetMatrix(2,2);
+
+/// <summary>
+/// Метод генерирования двумерного массива(матрицы)
+/// </summary>
+/// <param name="rows">Количество строк</param>
+/// <param name="cols">Количество столбцов</param>
+/// <returns>Заполненный двумерный массив</returns>
+int[,] GetMatrix (int rows, int cols)
+{
+    int[,] result = new int[rows, cols];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            result[i,j] = new Random().Next(1, 11);
+        }
+    }
+    return result;
+}
+
+/// <summary>
+/// Метод вывода двумерного массива в консоль
+/// </summary>
+/// <param name="inputMatrix">Входящий в метод двумерный массив</param>
+void PrintMatrix(int[,] inputMatrix)
+{
+    for (int i = 0; i < inputMatrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < inputMatrix.GetLength(1); j++)
+        {
+            Console.Write($"{inputMatrix[i,j]} ({i} {j}) \t");
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.WriteLine("----------Первая-матрица----------");
+PrintMatrix(firstMatrix);
+Console.WriteLine("----------Вторая-матрица----------");
+PrintMatrix(secondMatrix);
+Console.WriteLine("----------------------------------");
+
+
+/// <summary>
+/// Метод для нахождения произведения двух матриц
+/// </summary>
+/// <param name="matrix1">Первый двумерный массив(матрица)</param>
+/// <param name="matrix2">Второй двумерный массив(матрица)</param>
+/// <returns>Возвращаемый результат произведения</returns>
+int[,] GetProduct(int[,] matrix1, int[,] matrix2)
+{
+    int[,] result = new int[matrix1.GetLength(0), matrix1.GetLength(1)];
+    for (int i = 0; i < result.GetLength(0); i++)
+    {
+        for (int j = 0; j < result.GetLength(1); j++)
+        {
+            result[i,j] = matrix1[i,j] * matrix2[i,j];
+        }
+    }
+    return result;
+}
+
+int[,] matrixProduct = GetProduct(firstMatrix, secondMatrix);
+Console.WriteLine("Произведение двух матриц:");
+PrintMatrix(matrixProduct);
