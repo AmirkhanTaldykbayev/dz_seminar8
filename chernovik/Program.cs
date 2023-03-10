@@ -1,41 +1,34 @@
-﻿// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// В итоге получается вот такой массив:
-// 7 4 2 1
-// 9 5 3 2
-// 8 4 4 2
+﻿
+int[,] filledMatrix = SpiralMatrix(4, 4);
 
-int[,] filledMatrix = GetMatrix(4, 4, 1, 10);
-PrintMatrix(filledMatrix);
-
-/// <summary>
-/// Метод для создания двумерного массива(матрицы)
-/// </summary>
-/// <param name="rows">Количество строчек</param>
-/// <param name="cols">Количество столбцов</param>
-/// <param name="minValue">Минимальное допустимое значение в матрице</param>
-/// <param name="maxValue">Максимальное допустимое значение в матрице</param>
-/// <returns>Заполненный двумерный массив целых чисел</returns>
-int[,] GetMatrix(int rows, int cols, int minValue, int maxValue)
+int[,] SpiralMatrix(int rows, int cols)
 {
     int[,] matrix = new int[rows, cols];
-    for (int i = 0; i < rows; i++)
+    int row = 0;
+    int col = 0;
+    int dirX = 1;
+    int dirY = 0;
+    int dirChange = 0;
+    int flag = cols;
+    for (int i = 0; i < matrix.Length; i++)
     {
-        for (int j = 0; j < cols; j++)
+        matrix[row, col] = i + 1;
+        if (--flag == 0)
         {
-            matrix[i, j] = new Random().Next(minValue, maxValue + 1);
+            flag = rows * (dirChange % 2) + cols * ((dirChange + 1) % 2) - (dirChange / 2 - 1) - 2;
+            int temp = dirX;
+            dirX = -dirY;
+            dirY = temp;
+            dirChange++;
         }
+        col += dirX;
+        row += dirY;
     }
+
     return matrix;
 }
 
-/// <summary>
-/// Метод для вывода в консоль матрицы
-/// </summary>
-/// <param name="inputMatrix">Матрица(двумерный массив)</param>
+
 void PrintMatrix(int[,] inputMatrix)
 {
     for (int i = 0; i < inputMatrix.GetLength(0); i++)
@@ -48,28 +41,5 @@ void PrintMatrix(int[,] inputMatrix)
     }
 }
 
-// Теперь есть готовая матрица для перехода к решению задачи. Будем использовать метод VOID, так как нет нужды
-// создавать новый массив.
-
-/// <summary>
-/// Метод для сортировки строк в матрице по убыванию
-/// </summary>
-/// <param name="nonFilteredMatrix">Неотсортированная матрица</param>
-void DecreasingRows(int[,] nonFilteredMatrix) //Decreasing - убывающий (прим. перевод); Пардон за длинное название параметра
-{
-    for (int i = 0; i < nonFilteredMatrix.GetLength(1); i++)
-    {
-        for (int j = 0; j < nonFilteredMatrix.GetLength(0); j++)
-        {
-            if (nonFilteredMatrix[i, j] < nonFilteredMatrix[i, j])
-            {
-                nonFilteredMatrix[i, j] = nonFilteredMatrix[i, j];
-                nonFilteredMatrix[i,j] = nonFilteredMatrix[i,j];
-            }
-        }
-    }
-}
-
-Console.WriteLine("Результат: ");
-DecreasingRows(filledMatrix);
 PrintMatrix(filledMatrix);
+
