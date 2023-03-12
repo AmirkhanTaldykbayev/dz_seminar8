@@ -65,9 +65,9 @@ void DecreasingRows(int[,] nonFilteredMatrix) //Decreasing - убывающий 
             {
                 if (nonFilteredMatrix[k, i] < nonFilteredMatrix[k, j])
                 {
-                    int max = nonFilteredMatrix[k, i];
+                    int temp = nonFilteredMatrix[k, i];
                     nonFilteredMatrix[k, i] = nonFilteredMatrix[k, j];
-                    nonFilteredMatrix[k, j] = max;
+                    nonFilteredMatrix[k, j] = temp;
                 }
             }
         }
