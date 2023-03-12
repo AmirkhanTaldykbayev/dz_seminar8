@@ -6,18 +6,9 @@
 // 18 20
 // 15 18
 
-// int[,] firstMatrix = GetMatrix(2, 2);
-// int[,] secondMatrix = GetMatrix(2, 2);
-int[,] firstMatrix = new int[2, 2];
-firstMatrix[0, 0] = 2;
-firstMatrix[0, 1] = 4;
-firstMatrix[1, 0] = 3;
-firstMatrix[1, 1] = 2;
-int[,] secondMatrix = new int[2, 2];
-secondMatrix[0, 0] = 3;
-secondMatrix[0, 1] = 4;
-secondMatrix[1, 0] = 3;
-secondMatrix[1, 1] = 3;
+int[,] firstMatrix = GetMatrix(2, 2);
+int[,] secondMatrix = GetMatrix(2, 2);
+
 
 /// <summary>
 /// Метод генерирования двумерного массива(матрицы)
