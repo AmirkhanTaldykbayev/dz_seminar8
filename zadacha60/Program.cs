@@ -21,6 +21,7 @@ int[,,] Cube(int x, int y, int z, int minValue, int maxValue)
 {
     int[,,] threeDMatrix = new int[x, y, z];
     int[] uniqueNumbers = new int[x * y * z];
+    int firstnumber = threeDMatrix[0,0,0] = new Random().Next(minValue, maxValue + 1);
     for (int i = 0; i < x; i++)
     {
         for (int j = 0; j < y; j++)
@@ -28,11 +29,10 @@ int[,,] Cube(int x, int y, int z, int minValue, int maxValue)
             for (int k = 0; k < z; k++)
             {
                 threeDMatrix[i, j, k] = new Random().Next(minValue, maxValue + 1);
-                uniqueNumbers[k] = threeDMatrix[i, j, k];
-                Console.WriteLine($"[{String.Join(", ", uniqueNumbers)}]");
             }
         }
     }
+    Console.WriteLine(threeDMatrix[0,0,0]); 
     return threeDMatrix;
 }
 

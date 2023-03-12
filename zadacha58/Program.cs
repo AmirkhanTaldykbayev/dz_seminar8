@@ -6,8 +6,18 @@
 // 18 20
 // 15 18
 
-int[,] firstMatrix = GetMatrix(2,2);
-int[,] secondMatrix = GetMatrix(2,2);
+// int[,] firstMatrix = GetMatrix(2, 2);
+// int[,] secondMatrix = GetMatrix(2, 2);
+int[,] firstMatrix = new int[2, 2];
+firstMatrix[0, 0] = 2;
+firstMatrix[0, 1] = 4;
+firstMatrix[1, 0] = 3;
+firstMatrix[1, 1] = 2;
+int[,] secondMatrix = new int[2, 2];
+secondMatrix[0, 0] = 3;
+secondMatrix[0, 1] = 4;
+secondMatrix[1, 0] = 3;
+secondMatrix[1, 1] = 3;
 
 /// <summary>
 /// Метод генерирования двумерного массива(матрицы)
@@ -15,14 +25,14 @@ int[,] secondMatrix = GetMatrix(2,2);
 /// <param name="rows">Количество строк</param>
 /// <param name="cols">Количество столбцов</param>
 /// <returns>Заполненный двумерный массив</returns>
-int[,] GetMatrix (int rows, int cols)
+int[,] GetMatrix(int rows, int cols)
 {
     int[,] result = new int[rows, cols];
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
-            result[i,j] = new Random().Next(1, 11);
+            result[i, j] = new Random().Next(1, 11);
         }
     }
     return result;
@@ -38,7 +48,7 @@ void PrintMatrix(int[,] inputMatrix)
     {
         for (int j = 0; j < inputMatrix.GetLength(1); j++)
         {
-            Console.Write($"{inputMatrix[i,j]} ({i} {j}) \t");
+            Console.Write($"{inputMatrix[i, j]} ({i} {j}) \t");
         }
         Console.WriteLine();
     }
@@ -51,6 +61,7 @@ PrintMatrix(secondMatrix);
 Console.WriteLine("----------------------------------");
 
 
+
 /// <summary>
 /// Метод для нахождения произведения двух матриц
 /// </summary>
@@ -59,17 +70,30 @@ Console.WriteLine("----------------------------------");
 /// <returns>Возвращаемый результат произведения</returns>
 int[,] GetProduct(int[,] matrix1, int[,] matrix2)
 {
-    int[,] result = new int[matrix1.GetLength(0), matrix1.GetLength(1)];
-    for (int i = 0; i < result.GetLength(0); i++)
+    int[,] result = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+
+    for (int i = 0; i < matrix1.GetLength(0); i++)
     {
-        for (int j = 0; j < result.GetLength(1); j++)
+        for (int j = 0; j < matrix2.GetLength(1); j++)
         {
-            result[i,j] = matrix1[i,j] * matrix2[i,j];
+            for (int k = 0; k < matrix2.GetLength(1); k++)
+            {
+                result[i, j] += matrix1[i, k] * matrix2[k, j];
+            }
         }
+
     }
     return result;
 }
 
-int[,] matrixProduct = GetProduct(firstMatrix, secondMatrix);
-Console.WriteLine("Произведение двух матриц:");
-PrintMatrix(matrixProduct);
+
+if (firstMatrix.GetLength(1) == secondMatrix.GetLength(0))
+{
+    int[,] matrixProduct = GetProduct(firstMatrix, secondMatrix);
+    Console.WriteLine("Произведение двух матриц:");
+    PrintMatrix(matrixProduct);
+}
+else
+{
+    Console.WriteLine($"Произведение матриц невозмножно, так как колчество столбцов первой матрицы не совпадает с количеством строк второй матрицы");
+}
